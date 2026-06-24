@@ -2,7 +2,7 @@
 
 **Effective date:** June 23, 2026
 **Company:** Charging Systems Inc.
-**Address:** 3220 Cooke Way, Suite E, Oklahoma City, OK 73179, US
+**Address:** 4000 Pleasant Grove, Norman, OK 73072, US
 **Contact:** admin@chargingsystemsinc.com
 **Messaging number (toll-free):** +1-855-552-7708
 **Opt-in form:** https://chargingsystemsinc.com/sms
@@ -102,6 +102,6 @@ For questions about this SMS program:
 
 **Email:** admin@chargingsystemsinc.com
 **Charging Systems Inc.**
-3220 Cooke Way, Suite E
-Oklahoma City, OK 73179
+4000 Pleasant Grove
+Norman, OK 73072
 United States
