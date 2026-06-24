@@ -1,99 +1,104 @@
-# Comms_Master SMS Opt-In Process — Charging Systems Inc.
+# SMS Messaging Program & Consent — Charging Systems Inc.
 
-**Effective date:** May 28, 2026
+**Effective date:** June 23, 2026
 **Company:** Charging Systems Inc.
 **Address:** 4000 Pleasant Grove, Norman, OK 73072, US
 **Contact:** admin@chargingsystemsinc.com
-**Phone number sending messages:** +1-855-552-7708
+**Messaging number (toll-free):** +1-855-552-7708
+**Opt-in form:** https://chargingsystemsinc.com/sms
 
 ---
 
-## Purpose
+> **Status:** In development, pending approval. This rewrite replaces the prior
+> internal-staff-alert consent description, which Twilio Toll-Free Verification
+> **rejected on 2026-06-05** (error `30513` — the prior `opt_in_type=WEB_FORM`
+> pointed at a Markdown doc, and the "Verified Caller IDs" phone-code mechanism
+> is caller-ID verification, not messaging consent). This document describes a
+> real customer-facing opt-in via a web form with an unchecked consent checkbox.
 
-Charging Systems Inc. operates nine eBay seller accounts
-(ChargingSystemsInc, Automotive-Starter-Alternator, Alt-Start-Shop,
-EpartsGlobal-TX, Online-Starters-and-Alternators, Premier-Electrical-5,
-RotatingElectricalNetwork, SuperStarters, Texas-Starter-Alternator)
-selling aftermarket automotive electrical components.
+## Program overview
 
-We use an internal customer-service system called **Comms_Master** to
-monitor buyer messages across our marketplaces and detect time-sensitive
-cases (eBay Item Not Received cases, Amazon A-to-Z claims, negative
-feedback threats, urgent damage claims). When such a case is detected,
-the system sends a brief SMS alert to a pre-approved business staff
-phone so the issue can be addressed quickly.
+Charging Systems Inc. (brands: Charging Systems / Arc Reactor, and the
+EpartsGlobal eBay store) sends two categories of SMS/MMS message to customers
+who have **explicitly opted in**:
+
+1. **Operational route notifications** — for delivery-route customers, brief
+   service texts such as "Do you need a stop today?" and order/route status.
+2. **Promotional messages** — occasional offers, new-product announcements, and
+   promotional flyers sent as MMS images.
+
+Consent to receive messages is **never a condition of any purchase**.
 
 ## Who receives these messages
 
-SMS alerts from our Twilio number `+1-855-552-7708` are sent ONLY to:
+Only individuals who complete the opt-in described below. A customer may opt in
+to operational messages, promotional messages, or both — the opt-in form lets
+them choose. We do **not** message anyone who has not affirmatively opted in.
 
-- The business owners of Charging Systems Inc. (Dillon Toole, Pete Toole)
-- Customer-service team members of Charging Systems Inc.
+## How customers opt in (proof of consent)
 
-We **do not** send marketing or promotional messages from this number.
-We **do not** send messages to end customers or members of the public.
+**Primary method — web form.** At **https://chargingsystemsinc.com/sms** the
+customer enters their mobile number and checks an **unchecked-by-default**
+consent box. The form displays, at the point of consent, all of the following:
 
-## How recipients opt in (proof of consent)
+- The business name (**Charging Systems Inc.**).
+- A description of the message types (operational route notifications and/or
+  promotional offers) and approximate frequency.
+- "**Message and data rates may apply.**"
+- "**Reply STOP to opt out, HELP for help.**"
+- Links to this **SMS program / Privacy Policy** and **Terms**.
+- A statement that consent is **not a condition of purchase**.
 
-Recipients are added to the alert list through a two-step verification
-process that establishes affirmative consent:
+Submitting the form with the box checked records the customer's mobile number,
+the consent timestamp, and the exact disclosure text shown. A screenshot of this
+form is the `opt_in_image_urls` proof submitted to Twilio (it replaces the prior
+Markdown-doc URL).
 
-1. **Administrator request.** The Comms_Master account administrator
-   (Dillon Toole) requests that a given phone number receive alerts.
-   The number is entered into Twilio's *Verified Caller IDs* interface
-   inside our Twilio account dashboard.
-
-2. **Recipient verification.** Twilio places a verification call or
-   SMS to the recipient's number containing a six-digit code. The
-   recipient — operating their own device — receives that code and
-   enters it back into the Twilio Verified Caller IDs interface.
-
-3. **Explicit consent recorded.** By entering the code themselves, the
-   recipient provides explicit, demonstrable consent to receive alert
-   SMS from `+1-855-552-7708` on behalf of Comms_Master. Twilio's
-   Verified Caller IDs page maintains a permanent record of the
-   verification timestamp.
-
-Recipients who do not complete this two-step verification cannot receive
-any messages from our system.
+**Secondary method — route-customer agreement.** Delivery-route customers may
+also opt in to operational notifications via a checkbox on their route service
+agreement, capturing the same consent fields. Promotional messaging always
+requires the web-form opt-in above.
 
 ## Message frequency
 
-5–20 alert messages per day across all 9 stores. Volume is bounded by
-case frequency, not by promotional intent.
+- **Operational route notifications:** as needed on active route days — a few
+  messages per week for a given customer.
+- **Promotional messages:** infrequent — no more than a few per month.
 
 ## How to opt out
 
-Recipients can reply **STOP** to any message to be removed from the
-alert list. Replying **HELP** returns contact information. Standard
-Twilio STOP/HELP/UNSTOP keyword handling applies. **Message and data
-rates may apply.**
+Reply **STOP** to any message to be removed immediately. Reply **HELP** for
+contact information. Standard STOP / HELP / UNSTOP keyword handling applies.
+**Message and data rates may apply.**
 
 ## Sample messages
 
 ```
-[Comms_Master] INR case opened on RotatingElectricalNetwork eBay store.
-Buyer: missing_jordan. Priority 64. Respond within 4 business hours.
-Reply STOP to opt out.
+[Charging Systems] Hi — we're running your route today. Need a stop?
+Reply YES to be added. Reply STOP to opt out, HELP for help.
 ```
 
 ```
-[Comms_Master] Negative feedback threat detected on Alt-Start-Shop.
-Buyer: never_again. Action required within 1 business hour.
-Reply STOP to opt out.
+[Charging Systems] Your alternator order #10482 ships today from the USA.
+Tracking to follow. Reply STOP to opt out.
+```
+
+```
+[Charging Systems] This month: 10% off remanufactured starters (image attached).
+Msg & data rates may apply. Reply STOP to opt out, HELP for help.
 ```
 
 ## Privacy
 
-We do not share recipient phone numbers with any third party. Phone
-numbers and message history are stored only in our internal Postgres
-database and in Twilio's standard message logs. We retain no buyer
-personally identifying information beyond what is required for the
-customer-service workflow.
+We do **not** sell or share customer mobile numbers or SMS opt-in data with any
+third party for their own marketing. Numbers and message history are stored only
+in our internal database and in Twilio's standard message logs, and are used
+solely to deliver the messages the customer opted in to. SMS opt-in is handled
+separately from any other data sharing described in our Privacy Policy.
 
 ## Contact
 
-For questions about Comms_Master SMS alerts:
+For questions about this SMS program:
 
 **Email:** admin@chargingsystemsinc.com
 **Charging Systems Inc.**

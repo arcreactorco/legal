@@ -6,8 +6,8 @@ documents for **Charging Systems Inc.** and its operating brand
 
 ## Contents
 
-- [`SMS_CONSENT.md`](SMS_CONSENT.md) — SMS opt-in process and consent
-  policy for internal operational alerts (Comms_Master).
+- [`SMS_CONSENT.md`](SMS_CONSENT.md) — SMS messaging program and consent
+  policy: customer route/order notifications and promotional messages.
 
 ## About
 
